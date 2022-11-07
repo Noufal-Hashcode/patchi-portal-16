@@ -1,0 +1,94 @@
+.home-content {
+  .news-letter-tab {
+    flex: 1 1 auto;
+    width: 250px;
+    margin: 0.3rem;
+    padding: 0.6rem 1.5rem;
+    //border: 1px solid #06516E;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #d3d3d3;
+
+  }
+
+  .news-letter-tab:hover {
+    box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
+    background-color: #fbfbfb;
+  }
+
+  .alert-container {
+    height: 100%;
+    align-content: flex-start;
+    padding: 20px 20px;
+
+
+    @media (max-width: 450px) {
+      padding: 20px 10px;
+
+    }
+
+    .title {
+      position: relative;
+      font-size: 20px;
+      font-weight: 500;
+      color: #444B5A;
+      margin-bottom: 0px;
+    }
+
+    .alert-tab-container {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px 20px;
+      position: relative;
+    }
+
+    .alert-tab-container-inside {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .pagination-tabs {
+      display: flex;
+
+      .pagination-button {
+        display: flex;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 3px;
+        border: 1px solid #3F3F3F;
+        margin: 0px 4px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+
+}
+
+.warning_table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+
+  th, td {
+    padding: 8px 15px;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  .column-1 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 25%;
+    white-space: nowrap;
+    padding-left:4px;
+    padding-right: 4px;
+  }
+}
+

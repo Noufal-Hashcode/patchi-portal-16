@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="odoo_custom_portal.DashBoard" owl="1">
+
+
+                <section class="home-section" style="font-family:'Montserrat';">
+                <nav>
+                    <div class="sidebar-button">
+                        <i class='fa fa-bars icon' t-on-click="props.onClickMenu"></i>
+                        <span class="dashboard">Dashboard</span>
+                    </div>
+                    <div class="profile-details">
+                        <img class="logo-navbar" src="/odoo_custom_portal/static/src/img/logo-large.jpg" alt=""/>
+                    </div>
+                </nav>
+                    <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;height:100vh;width:100%">
+                        <div class="lds-dual-ring"></div>
+                    </div>
+
+                    <div t-attf-style="display:{{loading.is_loading ? 'none':'block'}}" class="home-content">
+
+                        <div class="user-details-box" style="">
+                            <div class="employee-icon-section">
+                                <div class="icon-container">
+                                    <img t-if="state.employee_data.id"
+                                         class="img rounded-circle profile-icon"
+                                         t-attf-src="/portal/web/image?model=hr.employee.public&amp;field=avatar_128&amp;id={{state.employee_data.id}}"/>
+                                </div>
+                                <div class="employee-name-box" >
+                                    <div>
+                                        <h2 style="font-weight: 600;font-size:1.3rem;"><t t-if="state.employee_data.name" t-esc="state.employee_data.name"/>
+                                                <t t-else=""> - </t></h2>
+                                    </div>
+                                    <div>
+                                        <h4 style="font-weight: 500;font-size:1rem;"><t t-if="state.employee_data.job_title" t-esc="state.employee_data.job_title"/>
+                                                <t t-else=""> -</t></h4>
+<!--                                        <h4  style="font-weight: 500;font-size:1rem;" class="employee-data"><t t-if="state.employee_data.department_id" t-esc="state.employee_data.department_id[1]"/>-->
+<!--                                                <t t-else=""> -</t></h4>-->
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="employee-details">
+                                    <table class="employee-details-table">
+                                        <tr>
+                                            <td style="white-space: nowrap;">Mobile - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.mobile_phone" t-esc="state.employee_data.mobile_phone"/>
+                                                <t t-else=""> - </t></span>
+                                            </td>
+                                            <td style="white-space: nowrap;" >Phone - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
+                                                <t t-else=""> - </t></span>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="white-space: nowrap;">Phone - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
+                                                <t t-else=""> - </t></span>
+                                            </td>
+                                            <td style="white-space: nowrap;">Working Hours -</td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.resource_calendar_id" t-esc="state.employee_data.resource_calendar_id[1]"/>
+                                                <t t-else=""> - </t></span>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                           <td style="white-space: nowrap;">Email - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.work_email" t-esc="state.employee_data.work_email"/>
+                                                <t t-else=""> - </t></span></td>
+                                            <td style="white-space: nowrap;">Time Zone - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.tz" t-esc="state.employee_data.tz"/>
+                                                <t t-else=""> - </t></span></td>
+
+                                        </tr>
+                                    </table>
+                                    <table class="employee-details-table-small">
+                                        <tr>
+                                            <td style="white-space: nowrap;">Mobile - </td>
+                                            <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.mobile_phone" t-esc="state.employee_data.mobile_phone"/>
+                                                <t t-else=""> -</t></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="white-space: nowrap;">Phone - </td>
+                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
+                                                <t t-else=""> -</t></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="white-space: nowrap;">Email - </td>
+                                            <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_email" t-esc="state.employee_data.work_email"/></span></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="white-space: nowrap;">Phone - </td>
+                                             <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
+                                                <t t-else=""> -</t></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="">Working Hours - </td>
+                                            <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.resource_calendar_id" t-esc="state.employee_data.resource_calendar_id[1]"/>
+                                                <t t-else=""> -</t></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="white-space: nowrap;">Time Zone - </td>
+                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.tz" t-esc="state.employee_data.tz"/></span></td>
+                                        </tr>
+                                        <tr class="department-small">
+                                            <td style="white-space: nowrap;">Department - </td>
+                                            <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.department_id" t-esc="state.employee_data.department_id[1]"/>
+                                                <t t-else=""> -</t></span></td>
+
+                                        </tr>
+                                        <tr class="department-small">
+                                            <td style="white-space: nowrap;">Location - </td>
+                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_location_id" t-esc="state.employee_data.work_location_id[1]"/>
+                                                <t t-else=""> -</t></span></td>
+
+                                        </tr>
+
+                                    </table>
+                                    <div class="employee-details-department">
+                                        <div>
+                                            <h3 style="font-size: 1.38rem;">Department</h3>
+                                            <p style="font-weight: 500;"><t t-if="state.employee_data.department_id" t-esc="state.employee_data.department_id[1]"/>
+                                                <t t-else=""> -</t></p>
+                                        </div>
+                                        <div>
+                                            <h3 style="font-size: 1.38rem;">Location</h3>
+                                            <p style="font-weight: 500;"><t t-if="state.employee_data.work_location_id" t-esc="state.employee_data.work_location_id[1]"/>
+                                                <t t-else=""> -</t></p>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+
+                        <div>
+<!--                            <div><h1 style="font-size:1.8rem;padding:0px 20px;margin-bottom:12px;color:#495057;font-weight: 500;">Short Cuts</h1></div>-->
+                            <div class="overview-boxes">
+                            <div class="box" t-on-click="()=>props.onClickShortCuts('my_profile')">
+                                <div class="right-side">
+                                    <div class="indicator">
+                                        <i class="fa fa-user icon"/>
+                                    </div>
+                                    <div class="box-topic">
+                                        <h1 style="font-family:'Montserrat';">My Profile</h1>
+                                    </div>
+                                </div>
+
+                            </div>
+                                <div class="box" t-on-click="()=>props.onClickShortCuts('my_shifts')">
+                                <div class="right-side">
+                                    <div class="indicator">
+                                        <i class="fa fa-clock-o icon"/>
+                                    </div>
+                                    <div class="box-topic">
+                                        <h1 style="font-family:'Montserrat';">My shifts</h1>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="box" t-on-click="()=>props.onClickShortCuts('alerts')">
+                                <div class="right-side">
+                                    <div class="indicator">
+                                        <i class="fa fa-bell icon"/>
+                                    </div>
+                                    <div class="box-topic">
+                                        <h1 style="font-family:'Montserrat';">Alerts</h1>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="box" t-on-click="()=>props.onClickShortCuts('newsletter')">
+                                <div class="right-side">
+                                    <div class="indicator">
+                                        <i class="fa fa-newspaper-o icon"/>
+                                    </div>
+                                    <div class="box-topic">
+                                        <h1 style="font-family:'Montserrat';">News Letter</h1>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="box" t-on-click="()=>props.onClickShortCuts('downloads')">
+                                <div class="right-side">
+                                    <div class="indicator">
+                                        <i class="fa fa-money"/>
+                                    </div>
+                                    <div class="box-topic">
+                                        <h1>Payslips</h1>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="box" >
+                                <div class="right-side">
+                                    <div class="indicator">
+                                        <i class="fa fa-calendar-times-o"/>
+                                    </div>
+                                    <div class="box-topic">
+                                        <h1>Leave</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        </div>
+
+                        <div class="sales-boxes">
+                            <div class="leave-balances box" style="width:100%;margin-bottom:0;">
+                                <div style="position: relative; margin-bottom: 14px;">
+                                    <div class="title">My Shifts</div>
+<!--                                    <div style="position: absolute;left: 0;bottom: -2px;height: 3px;width: 27px;border-radius: 8px;background-color: #4070f4;"></div>-->
+                                </div>
+<!--                                <div class="title">My Shifts</div>-->
+<!--                                    <div class="leave-balance-data" ></div>-->
+<!--                                    <svg id="gantt"></svg>-->
+<!--                                    <svg class="gantt-selector"></svg>-->
+                                <div class="leave-balance-data">
+                                    <iframe id="shifts-iframe" width="100%" height="280px" frameborder="0" t-attf-src="/my/shift-gannt-view"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="sales-boxes1">
+                            <div class="leave-balances">
+<!--                                <div class="title">Leave Balances</div>-->
+                                <div style="position: relative;margin-bottom: 14px;">
+                                    <div class="title">Leave Balances</div>
+<!--                                    <div style="position: absolute;left: 0;bottom: -2px;height: 3px;width: 27px;border-radius: 8px;background-color: #4070f4;"></div>-->
+                                </div>
+                                <div t-if="state.leave_balances_data.length>0" class="leave-balance-data" style="display: flex;flex-flow: row wrap;height: 100%;align-content: flex-start;">
+                                        <div t-foreach="state.leave_balances_data" t-as="leave"
+                                                t-key="leave[3]" class="leave-balances-tab">
+                                            <div style="display:flex; justify-content:space-between;">
+                                                <span style="color: black;font-weight: 600;font-size: 1.2rem;" t-esc="leave[0]"/>
+                                                <div style="width:28px;height:28px">
+                                                    <img t-if="leave[1].icon" style="width:28px;height:28px"  t-attf-src="{{leave[1].icon}}"/>
+                                                </div>
+                                            </div>
+                                            <div style="display:flex;justify-content:space-between;">
+                                                <div style="display:flex;">
+                                                    <span style="font-size: 2.1rem;font-weight: 700;color: #aa9828;" t-esc="leave[1].remaining_leaves"/>
+                                                    <div style="margin-left:4px;">
+                                                        <p style="color: black;font-weight: 400;font-size: 1rem;margin:0;" t-esc="leave[1].request_unit"/>
+                                                        <p style="color: black;font-weight: 400;font-size: 0.9rem;margin:0;" > Available</p>
+                                                    </div>
+                                                </div>
+                                                <div style="display:flex;align-items:flex-end;">
+                                                    <p style="margin:0;font-weight: 600;color: #444B5A;"> <t t-esc="leave[1].leaves_taken"/> / <t  t-esc="leave[1].max_leaves"/> <t t-esc="leave[1].request_unit"/>s</p>
+<!--                                                    <p t-esc="leave[1].request_unit"/>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem;padding: 0rem 1.5rem;"/>
+                                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem;padding: 0rem 1.5rem;"/>
+                                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem;padding: 0rem 1.5rem;"/>
+                                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem;padding: 0rem 1.5rem;"/>
+                                </div>
+                                <div t-else=""  t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;display:flex;justify-content:center;align-items:center;" class="downloads-tables">
+                                      <div style="">
+                                               <div style="display: flex;justify-content:center;margin: 15px 0px;">
+                                                   <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;"></i>
+                                               </div>
+                                               <div style="display: flex;justify-content:center;">
+                                                   <h1 style="font-size: 1.2rem;color: #c5c5c5;">No results</h1>
+                                               </div>
+                                           </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="leave-requests" style="margin-bottom:0px;">
+<!--                                <div class="title">Leave Requests</div>-->
+                                <div style="position: relative;margin-bottom: 14px; ">
+                                    <div class="title">Leave Requests</div>
+<!--                                    <div style="position: absolute;left: 0;bottom: -2px;height: 3px;width: 27px;border-radius: 8px;background-color: #4070f4;"></div>-->
+                                </div>
+
+                                <LeaveRequestTable/>
+                            </div>
+                        </div>
+                        <div class="sales-boxes">
+                            <div class="leave-balances">
+                                <div style="position: relative;margin-bottom: 14px;">
+                                    <div class="title">Attendance</div>
+<!--                                    <div style="position: absolute;left: 0;bottom: -2px;height: 3px;width: 27px;border-radius: 8px;background-color: #4070f4;"></div>-->
+                                </div>
+                                <AttendanceTable/>
+                            </div>
+                            <div class="leave-requests box">
+<!--                                <div class="title">Alerts</div>-->
+                                <div style="position: relative;margin-bottom: 14px;">
+                                    <div class="title">Alerts</div>
+<!--                                    <div style="position: absolute;left: 0;bottom: -2px;height: 3px;width: 27px;border-radius: 8px;background-color: #4070f4;"></div>-->
+                                </div>
+
+                                <DashBoardAlerts/>
+                            </div>
+                        </div>
+                        <div style="padding-top:30px;"></div>
+                    </div>
+
+            </section>
+
+        </t>
+
+    <t t-name="odoo_custom_portal.LeaveRequestTable" owl="1">
+        <div style="position:relative;height: 100%;">
+            <t  t-if="state.leave_requests_data.length>0">
+                <div t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;" class="downloads-tables">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Duration</th>
+                            <th style="text-align:right;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state.leave_requests_data" t-as="leave_request"
+                            t-key="leave_request.id">
+
+                            <td style="font-weight: 600;"><t t-if="leave_request.holiday_status_id" t-esc="leave_request.holiday_status_id[1]"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.date_from" t-esc="leave_request.date_from"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.date_to" t-esc="leave_request.date_to"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.duration_display" t-esc="leave_request.duration_display"/><t t-else="">    - </t></td>
+                            <td style="text-align:right;"><span t-if="leave_request.state" t-attf-style="padding: 4px 8px;border-radius: 14px;background-color:{{leave_request.state_colors.background}};font-size: 11px;font-weight: 600;margin:0;color: black;white-space: nowrap" t-esc="leave_request.state"/><span t-else="">    - </span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="leave-request-kanban" style="">
+                    <div t-foreach="state.leave_requests_data" t-as="leave_request"
+                                                t-key="leave_request.id" class="leave-balances-tab leave-balance-tab-reduce">
+                        <div style="display:flex; justify-content:space-between;">
+                            <div>
+                                <div style="display:flex;align-items:center;width:100%;">
+                                    <span style="margin-right:3px; color:#aa9828;"><i class='fa fa-clock-o'></i></span>
+                                    <span style="margin:0;font-weight: 600;color: black;font-size: 1.1rem;"><t t-esc="leave_request.date_from"/></span>
+                                </div>
+                                <div style="display:flex;align-items:center;width:100%;">
+                                    <span style="margin-right:3px;color:#aa9828;"><i class='fa fa-clock-o'></i></span>
+                                    <span style="margin:0;font-weight: 600;color: black;font-size: 1.1rem;"><t t-esc="leave_request.date_to"/></span>
+                                </div>
+                                <div style="display:flex;align-items:center;width:100%;">
+<!--                                    <span style="margin-right:3px;"><i class='fa fa-arrow-right'></i></span>-->
+                                    <span style="font-weight: 600;font-size: 1rem;"><t t-esc="leave_request.holiday_status_id[1]"/></span>
+                                </div>
+<!--                                <p style="margin:0;font-weight: 600;color: black;"> <t t-esc="leave_request.date_from"/></p>-->
+<!--                                <p style="margin:0;font-weight: 600;color: black;"> <t t-esc="leave_request.date_to"/></p>-->
+<!--                                <p style="font-weight: 600;font-size: 1rem;" t-esc="leave_request.holiday_status_id[1]"/>-->
+<!--                                                   <p t-esc="leave[1].request_unit"/>-->
+                            </div>
+                            <div style="display: flex;flex-direction: column;align-items: end;">
+
+                                <div t-attf-style="">
+                                        <span t-attf-style="padding: 4px 8px;border-radius: 14px;background-color:{{leave_request.state_colors.background}};font-size: 11px;font-weight: 600;margin:0;color: black;white-space: nowrap" t-esc="leave_request.state"/>
+                                </div>
+                            <div style="display:flex;">
+                                <span style="font-size: 2.1rem;font-weight: 700;" t-esc="leave_request.duration_display.split(' ')[0]"/>
+                                <div style="margin-left:4px;align-items: center;display: flex;">
+                                    <p style="color: black;font-weight: 400;font-size: 1rem;margin:0;" t-esc="leave_request.duration_display.split(' ')[1]"/>
+<!--                                    <p style="color: black;font-weight: 400;font-size: 0.9rem;margin:0;" > Available</p>-->
+                                </div>
+                            </div>
+                                </div>
+                        </div>
+<!--                        <div style="display:flex;justify-content:space-between;">-->
+<!--&lt;!&ndash;                            <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <p style="margin:0;font-weight: 600;"> <t t-esc="leave_request.date_from"/></p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <p style="margin:0;font-weight: 600;"> <t t-esc="leave_request.date_to"/></p>&ndash;&gt;-->
+<!--&lt;!&ndash;&lt;!&ndash;                                                   <p t-esc="leave[1].request_unit"/>&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                            <div style="display:flex;">-->
+<!--                                <span style="font-size: 2.1rem;font-weight: 700;" t-esc="leave_request.duration_display.split(' ')[0]"/>-->
+<!--                                <div style="margin-left:4px;align-items: center;display: flex;">-->
+<!--                                    <p style="color: black;font-weight: 400;font-size: 1rem;margin:0;" t-esc="leave_request.duration_display.split(' ')[1]"/>-->
+<!--&lt;!&ndash;                                    <p style="color: black;font-weight: 400;font-size: 0.9rem;margin:0;" > Available</p>&ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                    <div style="flex: 1 1 auto;width: 290px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                </div>
+
+                <div style="padding: 10px; display:flex;justify-content:end;width:100%;">
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <p style="margin:0;font-weight:700;margin-right: 15px;white-space: nowrap"><span t-esc="(state.items_per_page*(state.current_page-1))+1"/><span> - </span><span t-esc="(state.items_per_page*(state.current_page))"/><span style="margin:0px 10px;">/</span><span t-esc="state.leave_requests_count"/></p>
+                    </div>
+
+                    <div class="pagination-tabs">
+                        <div t-attf-style="opacity:{{(state.current_page > 1) ? 1 : 0.5}}" class="pagination-button" t-on-click="backButton">
+                            <span><i class='fa fa-chevron-left' ></i></span>
+                        </div>
+                        <div t-attf-style="opacity:{{(state.leave_requests_count > state.items_per_page*state.current_page) ? 1: 0.5}};" class="pagination-button" t-on-click="nextButton">
+                            <span><i class='fa fa-chevron-right'></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                 <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;opacity:0.7;background-color:#fff">
+                          <div class="lds-dual-ring"></div>
+                </div>
+            </t>
+            <div t-else=""  t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;display:flex;justify-content:center;align-items:center;" class="downloads-tables">
+                  <div style="">
+                           <div style="display: flex;justify-content:center;margin: 15px 0px;">
+                               <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;"></i>
+                           </div>
+                           <div style="display: flex;justify-content:center;">
+                               <h1 style="font-size: 1.2rem;color: #c5c5c5;">No results</h1>
+                           </div>
+                       </div>
+            </div>
+
+        </div>
+
+    </t>
+
+
+    <t t-name="odoo_custom_portal.AttendanceTable" owl="1">
+        <t t-if="state.attendances_data.length>0">
+        <div style="" t-attf-style="position:relative;">
+            <div t-attf-style="background-color: #fff;border-radius: 10px;" class="downloads-tables">
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+
+                            <th>Check In</th>
+                            <th>Check Out</th>
+                            <th style="text-align:right;">Worked Hours</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state.attendances_data" t-as="attendance"
+                            t-key="attendance.id">
+                            <td><t t-if="attendance.check_in" t-esc="attendance.check_in"/><t t-else="">    - </t></td>
+                            <td><t t-if="attendance.check_out" t-esc="attendance.check_out"/><t t-else="">    - </t></td>
+                            <td style="text-align:right; font-weight: 600; "><t t-if="attendance.worked_hours" t-esc="timeResource(attendance.worked_hours)"/><t t-else="">    - </t></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="attendance-kanban" style="">
+                    <div t-foreach="state.attendances_data" t-as="attendance"
+                                                t-key="attendance.id" class="leave-balances-tab">
+<!--                        <div style="display:flex;align-items:center">-->
+<!--                            <span style="margin-right:3px;"><i class='fa fa-calendar'></i></span>-->
+<!--                            <span style="color: black;font-weight: 600;font-size: 1rem;"><t t-esc="attendance.check_in"/> - <t t-esc="attendance.check_out"/></span>-->
+<!--                        </div>-->
+                        <div style="display:flex;justify-content: space-between;">
+                            <div style="display:flex;justify-content:center;flex-direction:column;">
+                                <div style="display:flex;align-items:center;width:100%;">
+                                    <span style="margin-right:3px;"><i class='fa fa-arrow-right' style="color:#aa9828;"></i></span>
+                                    <span style="color: black;font-weight: 600;font-size: 1.1rem;"><t t-esc="attendance.check_in"/></span>
+                                </div>
+                                <div style="display:flex;align-items:center">
+                                    <span style="margin-right:3px;"><i class='fa fa-arrow-left' style="color:#aa9828;"></i></span>
+                                    <span style="color: black;font-weight: 600;font-size: 1.1rem;"><t t-esc="attendance.check_out"/></span>
+                                </div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items: end;">
+<!--                                <span style="margin-right:3px;"><i class='fa fa-clock-o'></i></span>-->
+                                <span style="font-size: 2.1rem;font-weight: 700;margin-bottom: -0.8rem;" t-esc="timeResource(attendance.worked_hours)"/>
+                                <p style="color: black;font-weight: 400;font-size: 1rem;margin:0;">hours</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div style="flex: 1 1 auto;width: 250px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                    <div style="flex: 1 1 auto;width: 250px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                    <div style="flex: 1 1 auto;width: 250px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                    <div style="flex: 1 1 auto;width: 250px; margin: 0rem 0.3rem; padding: 0rem 1.5rem;"/>
+                </div>
+                <div style="padding: 10px; display:flex;justify-content:end;width:100%;">
+
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <p style="margin:0;font-weight:700;margin-right: 15px;white-space: nowrap"><span t-esc="(state.items_per_page*(state.current_page-1))+1"/><span> - </span><span t-esc="(state.items_per_page*(state.current_page))"/><span style="margin:0px 10px;">/</span><span t-esc="state.attendances_count"/></p>
+                    </div>
+
+                    <div class="pagination-tabs">
+                        <div t-attf-style="opacity:{{(state.current_page > 1) ? 1 : 0.5}}" class="pagination-button" t-on-click="backButton">
+                            <span><i class='fa fa-chevron-left'></i></span>
+                        </div>
+                        <div t-attf-style="opacity:{{(state.attendances_count > state.items_per_page*state.current_page) ? 1: 0.5}};" class="pagination-button" t-on-click="nextButton">
+                            <span><i class='fa fa-chevron-right'></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;opacity:0.7;background-color:#fff">
+                        <div class="lds-dual-ring"></div>
+            </div>
+        </div>
+        </t>
+            <div t-else=""  t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;display:flex;justify-content:center;align-items:center;" class="downloads-tables">
+                  <div style="">
+                           <div style="display: flex;justify-content:center;margin: 15px 0px;">
+                               <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;"></i>
+                           </div>
+                           <div style="display: flex;justify-content:center;">
+                               <h1 style="font-size: 1.2rem;color: #c5c5c5;">No results</h1>
+                           </div>
+                       </div>
+            </div>
+
+        <t>
+
+        </t>
+
+    </t>
+
+     <t t-name="odoo_custom_portal.DashBoardAlerts" owl="1">
+         <div style="height: 100%;overflow:hidden">
+         <div t-if="state.popup_active" >
+             <div style="position: fixed;z-index: 1000;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0, 0, 0, 0.7);transition: opacity 500ms;">
+                 <div style=" margin: 8rem auto;max-width: 700px;position: relative;transition: all 5s ease-in-out;">
+                     <div style="padding: 20px;background: #fff;border-radius: 5px;margin:0px 15px;">
+                         <div style="display:flex;justify-content:flex-end;">
+                             <div t-on-click="disablePopUp">
+                                 <i class="fa fa-times"></i>
+                             </div>
+                         </div>
+                         <div style="overflow-x: auto;">
+                             <div>
+                                 <h1><t t-esc="state.popup_active_data.name"/></h1>
+                             </div>
+                             <table class="warning_table">
+                                 <tr>
+                                     <td class="column-1" style="padding-left:4px;">Employee -</td>
+                                     <td><t t-esc="state.popup_active_data.employee_id[1]"/></td>
+                                 </tr>
+                                 <tr>
+                                     <td class="column-1" style="padding-left:4px;" >Type -</td>
+                                     <td><t t-esc="state.popup_active_data.type_id[1]"/></td>
+                                 </tr>
+                                 <tr>
+                                        <td class="column-1" style="" >Description -</td>
+                                        <td><t t-if="state.popup_active_data.description" t-esc="state.popup_active_data.description"/><t t-else="">    - </t></td>
+                                 </tr>
+                                 <tr>
+                                        <td class="column-1" style="" >Message -</td>
+                                        <td><t t-if="state.popup_active_data.message" t-esc="state.popup_active_data.message"/><t t-else="">    - </t></td>
+                                 </tr>
+                                 <tr>
+                                     <td class="column-1" style="padding-left:4px;">Department -</td>
+                                     <td><t t-esc="state.popup_active_data.department_id[1]"/></td>
+                                 </tr>
+                                 <tr>
+                                        <td class="column-1" style="">Warning Levels -</td>
+                                        <td><div t-foreach="state.popup_active_data.warning_level_ids" t-as="level" t-key="level.id"  t-esc="level.name"/></td>
+                                    </tr>
+                                 <tr>
+                                     <td class="column-1" style="padding-left:4px;">Attachments -</td>
+                                     <td>
+                                         <a t-attf-href="/portal{{attachment.local_url}}" target="_blank" t-foreach="state.popup_active_data.attachment_ids" t-as="attachment" t-key="attachment.id" style="padding:4px 8px;display:flex; align-items:center;">
+                                             <span style="margin-right:4px;"><i class="fa fa-download"></i></span>
+                                             <span><t t-esc="attachment.display_name"/></span>
+                                         </a>
+                                     </td>
+                                 </tr>
+                             </table>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <div style="position:relative;height: 100%;">
+             <t t-if="state.warnings_data.length>0">
+                    <div style="border-radius: 10px;background-color: #fff;" class="alert-container">
+                            <div  class="" style="height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                                <div class="alert-tab-container-inside">
+                                <div t-foreach="state.warnings_data" t-as="warning" t-key="warning.id" class="news-letter-tab" t-on-click="()=>enablePopUp(warning)">
+                                <div style="display:flex; justify-content:space-between;">
+                                    <span style="color: black;font-weight: 600;font-size: 1.2rem;"><t t-esc="warning.name"/></span>
+                                    <div t-attf-style="padding:2px 8px;border-radius:4px;background-color:{{warning.type == 'Warning' ? '#ff7575' : '#92d2a1'}}">
+                                        <span style="font-size: 1rem;font-weight: 600;margin:0;color: black;" t-esc="warning.type"/>
+                                    </div>
+                                </div>
+                                <div style="display:flex;justify-content:space-between;">
+                                    <div style="">
+                                        <div>
+                                            <i class="fa fa-chevron-right" style="color: #aa9828;"></i><span style="font-size: 1.1rem;font-weight: 500;margin:0 0 0 4px;"><t t-esc="warning.type_id[1]"/></span>
+                                        </div>
+                                        <div>
+                                            <i class="fa fa-building-o" style="color: #aa9828;"></i><span style="font-size: 1.1rem;font-weight: 500;margin:0 0 0 4px;"><t t-esc="warning.department_id[1]"/></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                                <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                                <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                                <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                            </div>
+                                <div style="padding: 10px; display:flex;justify-content:end;width:100%;">
+                                <div style="display:flex;justify-content:center;align-items:center;">
+                                    <p style="margin:0;font-weight:700;margin-right: 15px;white-space: nowrap"><span t-esc="(state.items_per_page*(state.current_page-1))+1"/><span> - </span><span t-esc="(state.items_per_page*(state.current_page))"/><span style="margin:0px 10px;">/</span><span t-esc="state.warnings_count"/></p>
+                                </div>
+                                <div class="pagination-tabs">
+                                <div t-attf-style="opacity:{{(state.current_page > 1) ? 1 : 0.5}}" class="pagination-button" t-on-click="backButton">
+                                    <span><i class='fa fa-chevron-left'></i></span>
+                                </div>
+                                <div t-attf-style="opacity:{{(state.warnings_count > state.items_per_page*state.current_page) ? 1: 0.5}};" class="pagination-button" t-on-click="nextButton">
+                                    <span><i class='fa fa-chevron-right'></i></span>
+                                </div>
+                            </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;opacity:0.7;background-color:#fff">
+                                <div class="lds-dual-ring"></div>
+                        </div>
+             </t>
+            <div t-else=""  t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;display:flex;justify-content:center;align-items:center;" class="downloads-tables">
+                       <div style="">
+                           <div style="display: flex;justify-content:center;margin: 15px 0px;">
+                               <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;"></i>
+                           </div>
+                           <div style="display: flex;justify-content:center;">
+                               <h1 style="font-size: 1.2rem;color: #c5c5c5;">No results</h1>
+                           </div>
+                       </div>
+            </div>
+
+
+
+         </div>
+         </div>
+        </t>
+
+
+        </templates>
+
+
+

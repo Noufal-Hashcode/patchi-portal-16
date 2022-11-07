@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="odoo_custom_portal.Requests" owl="1">
+
+
+                <section class="home-section" style="font-family:'Montserrat'">
+                <nav>
+                    <div class="sidebar-button">
+                        <i class='fa fa-bars icon' t-on-click="props.onClickMenu"></i>
+                        <span class="dashboard">Requests</span>
+                    </div>
+                    <div class="profile-details">
+                        <img class="logo-navbar" src="/odoo_custom_portal/static/src/img/logo-large.jpg" alt=""/>
+                    </div>
+                </nav>
+
+                    <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;height:100vh;width:100%">
+                        <div class="lds-dual-ring"></div>
+                    </div>
+
+                    <div class="home-content">
+
+                        <div>
+                            <div class="downloads-tab-container">
+                                <div class="download-tab">
+                                    <h1 style="font-family:'Montserrat';" class="download-tab-name">Leave Requests</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div t-attf-style="display:{{loading.is_loading ? 'none':'block'}}">
+                            <div class="downloads-tables-container">
+                                <div class="title">Leave Balances</div>
+                                <LeaveBalances1/>
+                        </div>
+                            <div class="downloads-tables-container">
+                                <div class="title">Leave Requests</div>
+                                <LeaveRequestTable1/>
+                        </div>
+                            <div style="padding-top:30px;"></div>
+                        </div>
+
+                    </div>
+
+
+
+
+            </section>
+
+        </t>
+
+    <t t-name="odoo_custom_portal.LeaveBalances1" owl="1">
+        <div class="leave-balance-data" style="display: flex;flex-flow: row wrap;height: 100%;align-content: flex-start;        flex: 1;
+      overflow-x: auto;
+      background: #fff;
+      padding: 20px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;">
+            <div t-foreach="state.leave_balances_data" t-as="leave"
+                 t-key="leave[3]" class="leave-balances-tab">
+                <div style="display:flex; justify-content:space-between;">
+                    <span style="color: black;font-weight: 600;font-size: 1.2rem;" t-esc="leave[0]"/>
+                    <div style="width:28px;height:28px">
+                        <img t-if="leave[1].icon" style="width:28px;height:28px"  t-attf-src="{{leave[1].icon}}"/>
+                    </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;">
+                    <div style="display:flex;">
+                        <span style="font-size: 2.1rem;font-weight: 700;" t-esc="leave[1].remaining_leaves"/>
+                        <div style="margin-left:4px;">
+                            <p style="color: black;font-weight: 400;font-size: 1rem;margin:0;" t-esc="leave[1].request_unit"/>
+                            <p style="color: black;font-weight: 400;font-size: 0.9rem;margin:0;" > Available</p>
+                        </div>
+                    </div>
+                    <div style="display:flex;align-items:flex-end;">
+                        <p style="margin:0;font-weight: 600;"> <t t-esc="leave[1].leaves_taken"/> / <t  t-esc="leave[1].max_leaves"/> <t t-esc="leave[1].request_unit"/>s</p>
+<!--                                                    <p t-esc="leave[1].request_unit"/>-->
+                    </div>
+                </div>
+
+            </div>
+            <div style="flex: 1 1 auto;width: 250px;"/>
+            <div style="flex: 1 1 auto;width: 250px;"/>
+            <div style="flex: 1 1 auto;width: 250px;"/>
+            <div style="flex: 1 1 auto;width: 250px;"/>
+        </div>
+    </t>
+
+    <t t-name="odoo_custom_portal.LeaveRequestTable1" owl="1">
+        <div style="position:relative">
+            <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;height: 200px;">
+                        <div class="lds-dual-ring"></div>
+            </div>
+
+            <div t-attf-style="display:{{loading.is_loading ? 'none':'block'}};background-color: #fff;border-radius: 10px;" class="downloads-tables">
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Duration</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state.leave_requests_data" t-as="leave_request"
+                            t-key="leave_request.id">
+
+                            <td><t t-if="leave_request.holiday_status_id" t-esc="leave_request.holiday_status_id[1]"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.date_from" t-esc="leave_request.date_from"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.date_to" t-esc="leave_request.date_to"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.duration_display" t-esc="leave_request.duration_display"/><t t-else="">    - </t></td>
+                            <td><t t-if="leave_request.state" t-esc="leave_request.state"/><t t-else="">    - </t></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="padding: 10px; display:flex;justify-content:end;width:100%;">
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <p style="margin:0;font-weight:700;margin-right: 15px;"><span t-esc="(state.items_per_page*(state.current_page-1))+1"/><span> - </span><span t-esc="(state.items_per_page*(state.current_page))"/><span style="margin:0px 10px;">/</span><span t-esc="state.leave_requests_count"/></p>
+                    </div>
+
+                    <div class="pagination-tabs">
+                        <div t-attf-style="opacity:{{(state.current_page > 1) ? 1 : 0.5}}" class="pagination-button" t-on-click="backButton">
+                            <span><i class='fa fa-chevron-left'></i></span>
+                        </div>
+                        <div t-attf-style="opacity:{{(state.leave_requests_count > state.items_per_page*state.current_page) ? 1: 0.5}};" class="pagination-button" t-on-click="nextButton">
+                            <span><i class='fa fa-chevron-right'></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </t>
+
+
+    <t t-name="odoo_custom_portal.DownloadsPaySlipTable1" owl="1">
+        <div style="position:relative">
+            <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;height: 200px;">
+                        <div class="lds-dual-ring"></div>
+            </div>
+
+            <div t-attf-style="display:{{loading.is_loading ? 'none':'block'}};background-color: #fff;border-radius: 10px;" class="downloads-tables">
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="padding: 12px 0px 12px 8px;"><input class="checkbox-input-1" type="checkbox" id="HideNoStock" name="HideNoStock" value="HideNoStock" t-on-change="selectAllItems"  t-att-checked="state.all_selected" />
+                                <div class="checkbox-box-1"></div>
+                            </th>
+                            <th>Reference</th>
+                            <th>Structure</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Basic Wage</th>
+                            <th>Net Wage</th>
+                            <th>State</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="state.payslips_data" t-as="payslip"
+                            t-key="payslip.id">
+                            <td style="padding: 12px 0px 12px 8px;"><input class="checkbox-input-1" type="checkbox" id="HideNoStock" name="HideNoStock" value="HideNoStock" t-on-change="() =>selectIndividualItem(payslip.id)"  t-att-checked="payslip.is_selected" />
+                                <div class="checkbox-box-1"></div>
+                            </td>
+                            <td><t t-if="payslip.number" t-esc="payslip.number"/><t t-else="">    - </t></td>
+                            <td><t t-if="payslip.struct_id[1]" t-esc="payslip.struct_id[1]"/><t t-else="">    - </t></td>
+                            <td><t t-if="payslip.date_from" t-esc="payslip.date_from"/><t t-else="">    - </t></td>
+                            <td><t t-if="payslip.date_to" t-esc="payslip.date_to"/><t t-else="">    - </t></td>
+                            <td><t t-if="payslip.basic_wage" t-esc="payslip.basic_wage"/><t t-else="">    - </t></td>
+                            <td><t t-if="payslip.net_wage" t-esc="payslip.net_wage"/><t t-else="">   - </t></td>
+                            <td><t t-if="payslip.state" t-esc="payslip.state"/><t t-else="">   - </t></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="padding: 10px; display:flex;justify-content:end;width:100%;">
+                    <div t-on-click="printReport" t-if="state.selected_items.length>0" style="border-radius: 4px;border: 1px solid #aa9828;display: flex;justify-content: center;align-items: center;padding: 6px 6px;margin-right: 15px;background-color: #aa9828;">
+                        <h2 style="margin: 0;font-size: 1.1rem;color: #fff;">Print</h2>
+                    </div>
+
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <p style="margin:0;font-weight:700;margin-right: 15px;"><span t-esc="(state.items_per_page*(state.current_page-1))+1"/><span> - </span><span t-esc="(state.items_per_page*(state.current_page))"/><span style="margin:0px 10px;">/</span><span t-esc="state.payslips_count"/></p>
+                    </div>
+
+                    <div class="pagination-tabs">
+                        <div t-attf-style="opacity:{{(state.current_page > 1) ? 1 : 0.5}}" class="pagination-button" t-on-click="backButton">
+                            <span><i class='fa fa-chevron-left'></i></span>
+                        </div>
+                        <div t-attf-style="opacity:{{(state.payslips_count > state.items_per_page*state.current_page) ? 1: 0.5}};" class="pagination-button" t-on-click="nextButton">
+                            <span><i class='fa fa-chevron-right'></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </t>
+
+</templates>
+
+
+

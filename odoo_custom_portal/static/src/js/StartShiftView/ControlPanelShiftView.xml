@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+        <t t-name="odoo_custom_portal.ShiftViewControlPanel" t-inherit="web.Legacy.ControlPanel" t-inherit-mode="primary" owl="1">
+         <xpath expr="//div[hasclass('o_cp_top')]" position="replace">
+        </xpath>
+        <xpath expr="//div[hasclass('o_cp_bottom_right')]" position="replace">
+        </xpath>
+
+    </t>
+
+</templates>
+
+

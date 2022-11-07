@@ -1,0 +1,29 @@
+.home-content {
+  .title {
+    position: relative;
+    font-size: 20px;
+    font-weight: 500;
+    color: #444B5A;
+    margin-bottom: 12px;
+  }
+
+  .shift-container-main {
+    padding: 20px 20px;
+
+    .shift-container {
+      overflow-x: auto;
+      background: #fff;
+      padding: 20px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 2rem 0 rgba(136, 152, 170, .15) !important;
+      @media (max-width: 450px) {
+        padding: 0 10px;
+
+      }
+    }
+         @media (max-width: 450px) {
+        padding: 20px 10px;
+
+      }
+  }
+}
