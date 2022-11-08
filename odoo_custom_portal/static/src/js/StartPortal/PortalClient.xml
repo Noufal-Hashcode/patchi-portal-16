@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="odoo_custom_portal.PortalClient" owl="1">
+        <body class="o_project_sharing">
+<!--            <h1>123</h1>-->
+            <MainPortal/>
+        </body>
+
+     </t>
+
+ </templates>
+
+
+

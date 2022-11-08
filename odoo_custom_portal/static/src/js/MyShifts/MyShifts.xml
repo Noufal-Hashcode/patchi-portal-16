@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="odoo_custom_portal.MyShifts" owl="1">
+
+
+                <section class="home-section" style="font-family:'Montserrat'">
+                <nav>
+                    <div class="sidebar-button">
+                        <i class='fa fa-bars icon' t-on-click="props.onClickMenu"></i>
+                        <span class="dashboard">My Shifts</span>
+                    </div>
+                    <div class="profile-details">
+                        <img class="logo-navbar" src="/odoo_custom_portal/static/src/img/logo-large.jpg" alt=""/>
+                    </div>
+                </nav>
+                    <div class="home-content">
+                        <div style="" class="shift-container-main">
+                            <div class="title">My Shifts</div>
+                            <div class="shift-container">
+                                <iframe id="shifts-iframe" width="100%" height="280px" frameborder="0" t-attf-src="/my/shift-gannt-view"/>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+            </section>
+
+        </t>
+
+        </templates>
+
+
+

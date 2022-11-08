@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="odoo_custom_portal.Alerts" owl="1">
+
+
+<section class="home-section" style="font-family:'Montserrat'">
+                <nav>
+                    <div class="sidebar-button">
+                        <i class='fa fa-bars icon' t-on-click="props.onClickMenu"></i>
+                        <span class="dashboard">Alerts</span>
+                    </div>
+                    <div class="profile-details">
+                        <img class="logo-navbar" src="/odoo_custom_portal/static/src/img/logo-large.jpg" alt=""/>
+                    </div>
+                </nav>
+<!--                    <div-->
+<!--                         t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;height:100vh;width:100%">-->
+<!--                        <div class="lds-dual-ring"></div>-->
+<!--                    </div>-->
+
+                    <div  class="home-content" style="position: static;">
+                        <div t-attf-style="display:{{loading.is_loading ? 'none':''}};" class="alert-container">
+                            <AlertsKanban/>
+                        </div>
+
+                        <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;">
+                            <div class="lds-dual-ring"></div>
+
+                        </div>
+                    </div>
+            </section>
+
+
+        </t>
+        <t t-name="odoo_custom_portal.AlertsKanban" owl="1">
+            <div>
+            <div t-if="state.popup_active" style="">
+                        <div style="position: fixed;z-index: 1000;top: 0;bottom: 0;left: 0;right: 0;background: rgba(0, 0, 0, 0.7);transition: opacity 500ms;">
+                            <div style=" margin: 8rem auto;max-width: 700px;position: relative;transition: all 5s ease-in-out;">
+                                <div style="padding: 20px;background: #fff;border-radius: 5px;margin:0px 15px;">
+                                    <div style="display:flex;justify-content:flex-end;">
+                                        <div t-on-click="disablePopUp">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div style="overflow-x: auto;">
+                                        <div>
+                                            <h1 style="font-family:'Montserrat';"><t t-esc="state.popup_active_data.name"/></h1>
+                                        </div>
+                                        <table class="warning_table">
+                                            <tr>
+                                                <td class="column-1" style="">Employee -</td>
+                                                <td><t t-esc="state.popup_active_data.employee_id[1]"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-1" style="" >Type -</td>
+                                                <td><t t-esc="state.popup_active_data.type_id[1]"/></td>
+                                            </tr>
+                                 <tr>
+                                        <td class="column-1" style="" >Description -</td>
+                                        <td><t t-if="state.popup_active_data.description" t-esc="state.popup_active_data.description"/><t t-else="">    - </t></td>
+                                 </tr>
+                                 <tr>
+                                        <td class="column-1" style="" >Message -</td>
+                                        <td><t t-if="state.popup_active_data.message" t-esc="state.popup_active_data.message"/><t t-else="">    - </t></td>
+                                 </tr>
+                                            <tr>
+                                                <td class="column-1" style="">Department -</td>
+                                                <td><t t-esc="state.popup_active_data.department_id[1]"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-1" style="">Warning Levels -</td>
+                                                <td><div t-foreach="state.popup_active_data.warning_level_ids" t-as="level" t-key="level.id"  t-esc="level.name"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column-1" style="">Attachments -</td>
+                                                <td>
+                                                    <a t-attf-href="/portal{{attachment.local_url}}" target="_blank" t-foreach="state.popup_active_data.attachment_ids" t-as="attachment" t-key="attachment.id" style="padding:4px 8px;display:flex; align-items:center;">
+                                                        <span style="margin-right:4px;"><i class="fa fa-download"></i></span>
+                                                        <span><t t-esc="attachment.display_name"/></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <div>
+            <div style="display:flex;justify-content:space-between;margin-bottom: 14px;align-items: center;">
+                <div class="title" style="">Warnings &amp; Notices</div>
+                <div style=" display:flex;justify-content:end;background-color:#fff;padding:8px 4px 8px 14px;border-radius: 10px;">
+                    <div style="display:flex;justify-content:center;align-items:center;">
+                        <p style="margin:0;font-weight:700;margin-right: 15px;white-space: nowrap"><span t-esc="(state.items_per_page*(state.current_page-1))+1"/><span> - </span><span t-esc="(state.items_per_page*(state.current_page))"/><span style="margin:0px 10px;">/</span><span t-esc="state.warnings_count"/></p>
+                    </div>
+                    <div class="pagination-tabs">
+                        <div t-attf-style="opacity:{{(state.current_page > 1) ? 1 : 0.5}}" class="pagination-button" t-on-click="backButton">
+                            <span><i class='fa fa-chevron-left'></i></span></div>
+                        <div t-attf-style="opacity:{{(state.warnings_count > state.items_per_page*state.current_page) ? 1: 0.5}};" class="pagination-button" t-on-click="nextButton">
+                            <span><i class='fa fa-chevron-right'></i></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div t-if="state.warnings_data.length>0"  class="alert-tab-container">
+                <div class="alert-tab-container-inside">
+                    <div t-foreach="state.warnings_data" t-as="warning" t-key="warning.id" class="news-letter-tab" t-on-click="()=>enablePopUp(warning)">
+                        <div style="display:flex; justify-content:space-between;">
+                            <span style="color: black;font-weight: 600;font-size: 1.2rem;"><t t-esc="warning.name"/></span>
+                            <div t-attf-style="padding:2px 8px;border-radius:4px;background-color:{{warning.type == 'Warning' ? '#ff7575' : '#92d2a1'}}">
+                                <span style="font-size: 1rem;font-weight: 600;margin:0;color: black;" t-esc="warning.type"/>
+                            </div>
+                        </div>
+                        <div style="display:flex;justify-content:space-between;">
+                            <div style="">
+                                <div>
+                                    <i class="fa fa-chevron-right" style="color: #aa9828;"></i><span style="font-size: 1.1rem;font-weight: 500;margin:0 0 0 4px;"><t t-esc="warning.type_id[1]"/></span>
+                                </div>
+                                <div>
+                                    <i class="fa fa-building-o" style="color: #aa9828;"></i><span style="font-size: 1.1rem;font-weight: 500;margin:0 0 0 4px;"><t t-esc="warning.department_id[1]"/></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                    <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                    <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                    <div style="flex: 1 1 auto;width: 250px; padding: 0rem 1.5rem;margin: 0rem 0.3rem;"></div>
+                </div>
+                <div t-attf-style="display:{{loading.is_loading ? 'flex':'none'}};position:absolute;justify-content:center;align-items:center;top:0;bottom:0;left:0;right:0;opacity:0.7;background-color:#fff;border-radius: 10px;">
+                    <div class="lds-dual-ring"></div>
+                </div>
+            </div>
+<!--               <div t-else="" style="display: flex;justify-content:center;margin-top:60px;">-->
+<!--                    <img style="opacity: 0.2;width:90%;max-width:470px;" src="/odoo_custom_portal/static/src/img/no-data.png" alt=""/>-->
+<!--                </div>-->
+<!--                -->
+                <div t-else=""  t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;" class="alert-tab-container">
+                    <div style="">
+                        <div style="display: flex;justify-content:center;margin: 15px 0px;">
+                            <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;font-family:'Montserrat';"></i>
+                        </div>
+                        <div style="display: flex;justify-content:center;">
+                            <h1 style="font-size: 1.2rem;color: #c5c5c5;">No results</h1>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+    </t>
+
+        </templates>
+
+
+
