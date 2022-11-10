@@ -169,6 +169,7 @@ export class DownloadsPaySlipTable extends Component {
 
     }
     printReport = async () => {
+        // ?list_ids=1,2
         let url_list = '?list_ids='+ this.state.selected_items.toString();
                     this.actionService.doAction(
                 {

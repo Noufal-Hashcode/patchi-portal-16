@@ -432,8 +432,7 @@ class PortalHomePage(CustomerPortal):
     # error check access
     @route(["/my/payslips/pdf/download"], type='http', auth="user", website=True)
     def get_payroll_report_print(self, list_ids='', **post):
-        if not request.env.user.has_group('hr_payroll.group_hr_payroll_user') or not list_ids or re.search("[^0-9|,]",
-                                                                                                           list_ids):
+        if not request.env.user.has_group('base.group_portal') or not list_ids or re.search("[^0-9|,]", list_ids):
             return request.not_found()
 
         ids = [int(s) for s in list_ids.split(',')]
@@ -517,8 +516,8 @@ class PortalHomePage(CustomerPortal):
                                        'level': level.warning_level_id.level} for level in
                                       warning.warning_level_ids],
                 'attachment_ids': [
-                    {'id': attachment.id, 'local_url': attachment.local_url, 'display_name': attachment.display_name,
-                     'website_url': attachment.website_url} for attachment in warning.attachment_ids]
+                    {'id': attachment.id, 'local_url': attachment.local_url, 'display_name': attachment.display_name, }
+                    for attachment in warning.attachment_ids]
             })
 
         return [{'warnings_data': warnings_data, 'warnings_count': warnings_count, }]
@@ -565,8 +564,7 @@ class PortalHomePage(CustomerPortal):
                                           circular.warning_level_ids],
                     'attachment_ids': [
                         {'id': attachment.id, 'local_url': attachment.local_url,
-                         'display_name': attachment.display_name,
-                         'website_url': attachment.website_url} for attachment in circular.attachment_ids]
+                         'display_name': attachment.display_name, } for attachment in circular.attachment_ids]
                 })
 
         return [{'circulars_data': circulars_data, 'circulars_count': circulars_count, }]
