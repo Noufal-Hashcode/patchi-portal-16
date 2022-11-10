@@ -143,7 +143,7 @@
                 <div t-else=""  t-attf-style="background-color: #fff;border-radius: 10px;height: 100%;" class="alert-tab-container">
                     <div style="">
                         <div style="display: flex;justify-content:center;margin: 15px 0px;">
-                            <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;font-family:'Montserrat';"></i>
+                            <i class="fa fa-search" style="font-size:50px;color: #c5c5c5;"></i>
                         </div>
                         <div style="display: flex;justify-content:center;">
                             <h1 style="font-size: 1.2rem;color: #c5c5c5;">No results</h1>

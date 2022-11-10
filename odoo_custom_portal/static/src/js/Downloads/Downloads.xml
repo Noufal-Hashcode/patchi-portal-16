@@ -42,7 +42,7 @@
                                         <h2 style="font-weight: 600;font-size:1.3rem;"><t t-esc="state.employee_data.name"/></h2>
                                     </div>
                                     <div>
-                                        <h4 style="font-weight: 500;font-size:1rem;"><t t-if="state.employee_data.job_title" t-esc="state.employee_data.job_title"/><t t-if="state.employee_data.job_title" t-esc="state.employee_data.job_title"/><t t-else=""> - </t></h4>
+                                        <h4 style="font-weight: 500;font-size:1rem;"><t t-if="state.employee_data.job_title" t-esc="state.employee_data.job_title"/><t t-else=""> - </t></h4>
                                     </div>
 
                                 </div>
@@ -69,7 +69,7 @@
                                                 <t t-else=""> -</t></span></td>
                                         </tr>
                                         <tr>
-                                            <td>First Contact Date - <span class="employee-data"><t t-if="state.employee_data.first_contract_date" t-esc="state.employee_data.first_contract_date"/>
+                                            <td>First Contract Date - <span class="employee-data"><t t-if="state.employee_data.first_contract_date" t-esc="state.employee_data.first_contract_date"/>
                                                 <t t-else=""> -</t></span></td>
 
                                         </tr>
