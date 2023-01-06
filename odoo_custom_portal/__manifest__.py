@@ -10,7 +10,7 @@
     'description': """  """,
     'depends': [
         'base', 'web',
-        'mail', 'portal', 'project', 'hr_timesheet', 'hr_expense', 'planning','timesheet_grid'
+        'mail', 'portal', 'project', 'hr_timesheet', 'hr_expense', 'planning','timesheet_grid','hr_payroll'
     ],
     'data': [
         'security/security.xml',
