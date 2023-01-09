@@ -47,18 +47,19 @@
                             <div class="employee-details">
                                     <table class="employee-details-table">
                                         <tr>
-                                            <td style="white-space: nowrap;">Mobile - </td>
+                                            <td style="white-space: nowrap;">Work Mobile - </td>
                                             <td><span class="employee-data"><t t-if="state.employee_data.mobile_phone" t-esc="state.employee_data.mobile_phone"/>
                                                 <t t-else=""> - </t></span>
                                             </td>
-                                            <td style="white-space: nowrap;" >Phone - </td>
-                                            <td><span class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
+                                            <td style="white-space: nowrap;">Phone - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.phone"/>
                                                 <t t-else=""> - </t></span>
                                             </td>
 
                                         </tr>
                                         <tr>
-                                            <td style="white-space: nowrap;">Phone - </td>
+
+                                            <td style="white-space: nowrap;" >Work Phone - </td>
                                             <td><span class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
                                                 <t t-else=""> - </t></span>
                                             </td>
@@ -69,34 +70,34 @@
 
                                         </tr>
                                         <tr>
-                                           <td style="white-space: nowrap;">Email - </td>
+                                           <td style="white-space: nowrap;">Work Email - </td>
                                             <td><span class="employee-data"><t t-if="state.employee_data.work_email" t-esc="state.employee_data.work_email"/>
                                                 <t t-else=""> - </t></span></td>
-                                            <td style="white-space: nowrap;">Time Zone - </td>
-                                            <td><span class="employee-data"><t t-if="state.employee_data.tz" t-esc="state.employee_data.tz"/>
+                                            <td style="white-space: nowrap;">Private Email - </td>
+                                            <td><span class="employee-data"><t t-if="state.employee_data.private_email" t-esc="state.employee_data.private_email"/>
                                                 <t t-else=""> - </t></span></td>
 
                                         </tr>
                                     </table>
                                     <table class="employee-details-table-small">
                                         <tr>
-                                            <td style="white-space: nowrap;">Mobile - </td>
+                                            <td style="white-space: nowrap;">Work Mobile - </td>
                                             <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.mobile_phone" t-esc="state.employee_data.mobile_phone"/>
                                                 <t t-else=""> -</t></span></td>
                                         </tr>
                                         <tr>
-                                            <td style="white-space: nowrap;">Phone - </td>
+                                            <td style="white-space: nowrap;">Work Phone - </td>
                                             <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
                                                 <t t-else=""> -</t></span></td>
                                         </tr>
                                         <tr>
-                                            <td style="white-space: nowrap;">Email - </td>
+                                            <td style="white-space: nowrap;">Work Email - </td>
                                             <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_email" t-esc="state.employee_data.work_email"/></span></td>
 
                                         </tr>
                                         <tr>
                                             <td style="white-space: nowrap;">Phone - </td>
-                                             <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_phone" t-esc="state.employee_data.work_phone"/>
+                                             <td><span style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.phone" t-esc="state.employee_data.phone"/>
                                                 <t t-else=""> -</t></span></td>
                                         </tr>
                                         <tr>
@@ -105,8 +106,8 @@
                                                 <t t-else=""> -</t></span></td>
                                         </tr>
                                         <tr>
-                                            <td style="white-space: nowrap;">Time Zone - </td>
-                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.tz" t-esc="state.employee_data.tz"/></span></td>
+                                            <td style="white-space: nowrap;">Private Email - </td>
+                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.private_email" t-esc="state.employee_data.private_email"/></span></td>
                                         </tr>
                                         <tr class="department-small">
                                             <td style="white-space: nowrap;">Department - </td>
@@ -115,8 +116,8 @@
 
                                         </tr>
                                         <tr class="department-small">
-                                            <td style="white-space: nowrap;">Location - </td>
-                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.work_location_id" t-esc="state.employee_data.work_location_id[1]"/>
+                                            <td style="white-space: nowrap;">Branch - </td>
+                                            <td><span  style="word-wrap: break-word" class="employee-data"><t t-if="state.employee_data.branch_id" t-esc="state.employee_data.branch_id[1]"/>
                                                 <t t-else=""> -</t></span></td>
 
                                         </tr>
@@ -129,8 +130,8 @@
                                                 <t t-else=""> -</t></p>
                                         </div>
                                         <div>
-                                            <h3 style="font-size: 1.38rem;">Location</h3>
-                                            <p style="font-weight: 500;"><t t-if="state.employee_data.work_location_id" t-esc="state.employee_data.work_location_id[1]"/>
+                                            <h3 style="font-size: 1.38rem;">Branch</h3>
+                                            <p style="font-weight: 500;"><t t-if="state.employee_data.branch_id" t-esc="state.employee_data.branch_id[1]"/>
                                                 <t t-else=""> -</t></p>
                                         </div>
                                     </div>
